@@ -4,7 +4,8 @@ class SplashRouteController extends GetxController {
   // 하나의 상태
   late bool finishAnimate = false;
 
-  void setAnimationFinished() {
+  // text 애니메이션 끝났을때 상태 변화
+  void animationFinished() {
     finishAnimate = true;
     update();
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:todo_practice/route/list/list_route.dart';
+import 'package:todo_practice/route/todo_list/todo_list_route.dart';
 import 'package:todo_practice/route/splash/splash_route_controller.dart';
 
 class SplashRoute extends StatefulWidget {
@@ -40,7 +40,7 @@ class _SplashRouteState extends State<SplashRoute>
     // 애니메이션 완료 후 페이지 이동
     _animationController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        _splashRouteController.setAnimationFinished();
+        _splashRouteController.animationFinished();
       }
     });
   }
@@ -58,7 +58,7 @@ class _SplashRouteState extends State<SplashRoute>
         // 애니메이션이 끝났을 때 페이지 이동
         if (_splashRouteController.finishAnimate) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            Get.to(ListRoute()); // 애니메이션 완료 후 ListRoute로 이동
+            Get.to(const TodoListRoute()); // 애니메이션 완료 후 ListRoute로 이동
           });
           return Container(); // 페이지 이동 중 화면을 비우기 위해 빈 컨테이너 반환
         }

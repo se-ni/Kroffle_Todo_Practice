@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:todo_practice/route/list/list_route.dart';
+import 'package:todo_practice/route/todo_list/todo_list_route.dart';
 import 'package:todo_practice/route/splash/splash_route.dart';
 // import 'package:todo_practice/app.dart';
 
@@ -23,7 +23,8 @@ class MyApp extends StatelessWidget {
         home: const SplashRoute(),
         getPages: [
           GetPage(name: '/', page: () => const SplashRoute()), // SplashRoute
-          GetPage(name: '/list', page: () => const ListRoute()), // ListRoute
+          GetPage(
+              name: '/list', page: () => const TodoListRoute()), // ListRoute
         ]);
   }
 }
