@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:todo_practice/model/task_model.dart';
 import 'package:todo_practice/route/todo_list/todo_list_route_controller.dart';
 
 class TodoWidget extends StatefulWidget {
@@ -18,7 +19,26 @@ class _TodoWidgetState extends State<TodoWidget> {
         final task = Get.find<TodoListRouteController>().tasks[index];
         return Row(
           children: [
-            Text((task.taskStatus).toString()),
+            //Text((task.taskStatus).toString()),
+            // Status 업데이트를 위한 드롭다운 버튼
+            DropdownButton<Status>(
+              value: task.taskStatus,
+              onChanged: (Status? newValue) {
+                setState(() {
+                  task.taskStatus = newValue!;
+                });
+              },
+              items:
+                  Status.values.map<DropdownMenuItem<Status>>((Status value) {
+                return DropdownMenuItem<Status>(
+                  value: value,
+                  child: Text(value
+                      .toString()
+                      .split('.')
+                      .last), // "notStarted", "progress", "end"
+                );
+              }).toList(),
+            ),
             const SizedBox(
               width: 2,
             ),

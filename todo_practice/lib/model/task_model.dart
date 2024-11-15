@@ -1,5 +1,20 @@
 enum Status { notStarted, progress, end }
 
+extension StatusExtension on Status {
+  String get displayText {
+    switch (this) {
+      case Status.notStarted:
+        return "시작 전";
+      case Status.progress:
+        return "진행 중";
+      case Status.end:
+        return "완료";
+      default:
+        return '';
+    }
+  }
+}
+
 class TaskModel {
   // task 고유 id
   String? id;
