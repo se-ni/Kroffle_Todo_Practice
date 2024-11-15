@@ -7,15 +7,6 @@ class TodoListWidgetController extends GetxController {
 
   late TaskModel newTask;
 
-  // 할일 작성 후 저장 상태
-  bool isSaved = false;
-
-  // 할일 작성 저장 버튼 눌렀을때
-  void onClickSaveButton() {
-    isSaved = true;
-    update();
-  }
-
   // task 생성하기
   void createTask(String title, String detail) {
     if (detail == null) {

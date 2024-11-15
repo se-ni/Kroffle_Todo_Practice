@@ -93,13 +93,11 @@ class _TodoListWidgetState extends State<TodoListWidget> {
                     String title = titleController.text;
                     String detail = titleController.text;
 
-                    controller.onClickSaveButton();
                     controller.createTask(title, detail);
-
                     controller.addTasktoList();
 
                     // 저장됨
-                    // print(controller.todoListRouteController.tasks[0].title);
+                    print(controller.todoListRouteController.tasks[0].title);
 
                     // Get.back(); 적용 안됨
                     Navigator.of(context).pop();

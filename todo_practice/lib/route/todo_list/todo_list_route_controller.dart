@@ -9,10 +9,4 @@ class TodoListRouteController extends GetxController {
     tasks.add(newTask); // 새로운 할 일 리스트에 추가
     update();
   }
-
-  // void onClickAddButton() {
-  //   isClicked = !isClicked;
-  //   print(isClicked);
-  //   update();
-  // }
 }
