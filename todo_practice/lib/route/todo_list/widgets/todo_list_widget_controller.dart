@@ -8,18 +8,17 @@ class TodoListWidgetController extends GetxController {
   late TaskModel newTask;
 
   // task 생성하기
-  void createTask(String title, String detail) {
-    if (detail == null) {
-      newTask = TaskModel(title: title, createdAt: DateTime.now());
-    } else {
-      newTask =
-          TaskModel(title: title, detail: detail, createdAt: DateTime.now());
-    }
+  TaskModel createTask(String title) {
+    newTask = TaskModel(title: title, createdAt: DateTime.now());
     update();
+    return newTask;
   }
 
-  // task 리스트에 저장하기
-  void addTasktoList() {
-    todoListRouteController.addTask(newTask);
+  // detail 있는 task 생성하기
+  TaskModel createDetailTask(String title, String detail) {
+    newTask =
+        TaskModel(title: title, detail: detail, createdAt: DateTime.now());
+    update();
+    return newTask;
   }
 }

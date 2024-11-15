@@ -14,6 +14,8 @@ class _TodoListWidgetState extends State<TodoListWidget> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController detailController = TextEditingController();
 
+  late TaskModel newTask;
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<TodoListWidgetController>(
@@ -91,16 +93,21 @@ class _TodoListWidgetState extends State<TodoListWidget> {
                     // TODO : 새로운 task 를 만들어서 list 에 추가해야함
 
                     String title = titleController.text;
-                    String detail = titleController.text;
+                    String detail = detailController.text;
+                    if (detail.isEmpty) {
+                      newTask = controller.createTask(title);
+                    } else {
+                      newTask = controller.createDetailTask(title, detail);
+                    }
 
-                    controller.createTask(title, detail);
-                    controller.addTasktoList();
+                    //controller.addTasktoList(newTask);
 
                     // 저장됨
-                    print(controller.todoListRouteController.tasks[0].title);
+                    //print(controller.todoListRouteController.tasks[0].title);
 
                     // Get.back(); 적용 안됨
-                    Navigator.of(context).pop();
+
+                    Navigator.of(context).pop(newTask);
                   },
                   style: ElevatedButton.styleFrom(
                       elevation: 0, // 그림자 제거

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:todo_practice/model/task_model.dart';
 import 'package:todo_practice/route/todo_list/todo_list_route_controller.dart';
 import 'package:todo_practice/route/todo_list/widgets/todo_list_widget.dart';
 
@@ -22,7 +21,7 @@ class _TodoListRouteState extends State<TodoListRoute> {
   Widget build(BuildContext context) {
     return GetBuilder<TodoListRouteController>(
       builder: (controller) {
-        List<TaskModel> tasks = controller.tasks; // tasks 리스트 가져오기
+        // List<TaskModel> tasks = controller.tasks; // tasks 리스트 가져오기
         return Scaffold(
           appBar: AppBar(
             title: const Text('Todo APP'),
@@ -43,24 +42,38 @@ class _TodoListRouteState extends State<TodoListRoute> {
                             elevation: 0,
                             child: TodoListWidget(),
                           ),
-                        );
+                        ).then((newTask) => {
+                              controller.addTask(newTask),
+                              Get.back(),
+                            });
                       },
                       icon: const Icon(Icons.add_circle),
                     ),
                   ],
                 ),
-                if (tasks.isEmpty) const Text('할일이 없습니다.'),
-                if (tasks.isNotEmpty)
-                  ListView.builder(
-                      itemCount: tasks.length,
-                      itemBuilder: (context, index) {
-                        final task = tasks[index];
-                        return ListTile(
-                            title: Text(task.title),
-                            subtitle: task.detail != null
-                                ? Text(task.detail!)
-                                : const Text('s'));
-                      })
+                Container(
+                  width: 400,
+                  height: 500,
+                  child: Builder(builder: (context) {
+                    if (controller.tasks.isEmpty) {
+                      return const Text('할일이 없습니다.');
+                    } else {
+                      print('할일 있음');
+                      return ListView.builder(
+                          itemCount: controller.tasks.length,
+                          itemBuilder: (context, index) {
+                            final task = controller.tasks[index];
+                            return ListTile(
+                                title: Text(task.title),
+                                subtitle: task.detail != null
+                                    ? Text(task.detail!)
+                                    : const Text(''));
+                          });
+                    }
+                  }),
+                ),
+
+                // TODO : controller.tasks 리스트에 할일 추가 정상적으로 되어서 empty가 아닌데 타일이 출력되지 않는 문제 해결해야함
               ],
             ),
           ),
