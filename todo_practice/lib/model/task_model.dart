@@ -4,7 +4,7 @@ class TaskModel {
   // task 제목
   String title;
   // task 세부 내용
-  String? details;
+  String? detail;
   // task 생성일
   DateTime createdAt;
 
@@ -12,6 +12,6 @@ class TaskModel {
   TaskModel(
       {required this.id,
       required this.title,
-      this.details,
+      this.detail,
       required this.createdAt});
 }

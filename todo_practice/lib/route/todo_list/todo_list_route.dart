@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_practice/route/todo_list/todo_list_route_controller.dart';
+import 'package:todo_practice/route/todo_list/widgets/test_widget.dart';
 import 'package:todo_practice/route/todo_list/widgets/todo_list_widget.dart';
 
 class TodoListRoute extends StatefulWidget {
@@ -11,48 +12,49 @@ class TodoListRoute extends StatefulWidget {
 }
 
 class _TodoListRouteState extends State<TodoListRoute> {
-  final TodoListRouteController _todoListRouteController =
-      Get.put(TodoListRouteController());
-
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<TodoListRouteController>(builder: (context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text('Todo APP'),
-        ),
-        body: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+    return GetBuilder<TodoListRouteController>(
+      init: TodoListRouteController(),
+      builder: (controller) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('Todo APP'),
+          ),
+          body: SingleChildScrollView(
+            child: Column(
               children: [
-                const Text('할일 만들기'),
-                IconButton(
-                    onPressed: () {
-                      print(_todoListRouteController.isClicked);
-                      // 처음 + 누르면,
-                      if (!_todoListRouteController.isClicked) {
-                        _todoListRouteController.clickedPlus(); // true 로 바꿔주고
-                        print(_todoListRouteController.isClicked);
-                        return;
-                      }
-
-                      _todoListRouteController.reClickedPlus();
-                      print(_todoListRouteController.isClicked);
-                    },
-                    icon: const Icon(Icons.add_circle)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('할일 만들기'),
+                    IconButton(
+                        onPressed: () {
+                          //controller.onClickAddButton();
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return const Dialog(
+                                    backgroundColor: Colors.transparent,
+                                    elevation: 0,
+                                    child: TodoListWidget());
+                              });
+                        },
+                        icon: const Icon(Icons.add_circle)),
+                  ],
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.grey,
+                  ),
+                  width: 100,
+                  height: 600,
+                ),
               ],
             ),
-            Builder(builder: (context) {
-              if (_todoListRouteController.isClicked) {
-                //TODO : panel 안에 TextField 띄우는거로 바꾸기
-                return const TodoListWidget();
-              }
-              return const SizedBox();
-            })
-          ],
-        ),
-      );
-    });
+          ),
+        );
+      },
+    );
   }
 }

@@ -58,7 +58,7 @@ class _SplashRouteState extends State<SplashRoute>
         // 애니메이션이 끝났을 때 페이지 이동
         if (_splashRouteController.finishAnimate) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            Get.to(const TodoListRoute()); // 애니메이션 완료 후 ListRoute로 이동
+            Get.offAll(() => const TodoListRoute()); // 애니메이션 완료 후 ListRoute로 이동
           });
           return Container(); // 페이지 이동 중 화면을 비우기 위해 빈 컨테이너 반환
         }
