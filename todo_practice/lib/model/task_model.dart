@@ -1,6 +1,6 @@
 class TaskModel {
   // task 고유 id
-  String id;
+  String? id;
   // task 제목
   String title;
   // task 세부 내용
@@ -10,8 +10,5 @@ class TaskModel {
 
   // 생성자
   TaskModel(
-      {required this.id,
-      required this.title,
-      this.detail,
-      required this.createdAt});
+      {this.id, required this.title, this.detail, required this.createdAt});
 }

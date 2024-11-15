@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_practice/route/todo_list/todo_list_route_controller.dart';
-import 'package:todo_practice/route/todo_list/widgets/test_widget.dart';
 import 'package:todo_practice/route/todo_list/widgets/todo_list_widget.dart';
 
 class TodoListRoute extends StatefulWidget {
@@ -13,9 +12,14 @@ class TodoListRoute extends StatefulWidget {
 
 class _TodoListRouteState extends State<TodoListRoute> {
   @override
+  void initState() {
+    super.initState();
+    Get.put(TodoListRouteController());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GetBuilder<TodoListRouteController>(
-      init: TodoListRouteController(),
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
@@ -31,14 +35,13 @@ class _TodoListRouteState extends State<TodoListRoute> {
                     IconButton(
                         onPressed: () {
                           //controller.onClickAddButton();
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return const Dialog(
-                                    backgroundColor: Colors.transparent,
-                                    elevation: 0,
-                                    child: TodoListWidget());
-                              });
+                          Get.dialog(
+                            const Dialog(
+                              backgroundColor: Colors.transparent,
+                              elevation: 0,
+                              child: TodoListWidget(),
+                            ),
+                          );
                         },
                         icon: const Icon(Icons.add_circle)),
                   ],

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_practice/model/task_model.dart';
-import 'package:todo_practice/route/todo_list/todo_list_route_controller.dart';
 import 'package:todo_practice/route/todo_list/widgets/todo_list_widget_controller.dart';
-import 'package:uuid/uuid.dart';
 
 class TodoListWidget extends StatefulWidget {
   const TodoListWidget({super.key});
@@ -13,11 +11,14 @@ class TodoListWidget extends StatefulWidget {
 }
 
 class _TodoListWidgetState extends State<TodoListWidget> {
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController detailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<TodoListWidgetController>(
       init: TodoListWidgetController(),
-      builder: (context) {
+      builder: (controller) {
         return Container(
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(4)),
@@ -36,6 +37,7 @@ class _TodoListWidgetState extends State<TodoListWidget> {
                     Flexible(
                       flex: 5,
                       child: TextFormField(
+                        controller: titleController,
                         maxLength: 20,
                         decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
@@ -62,6 +64,7 @@ class _TodoListWidgetState extends State<TodoListWidget> {
                     Flexible(
                       flex: 5,
                       child: TextFormField(
+                        controller: detailController,
                         maxLines: 5,
                         maxLength: 50,
                         decoration: InputDecoration(
@@ -86,6 +89,20 @@ class _TodoListWidgetState extends State<TodoListWidget> {
                   onPressed: () {
                     // TODO : 상태관리
                     // TODO : 새로운 task 를 만들어서 list 에 추가해야함
+
+                    String title = titleController.text;
+                    String detail = titleController.text;
+
+                    controller.onClickSaveButton();
+                    controller.createTask(title, detail);
+
+                    controller.addTasktoList();
+
+                    // 저장됨
+                    // print(controller.todoListRouteController.tasks[0].title);
+
+                    // Get.back(); 적용 안됨
+                    Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
                       elevation: 0, // 그림자 제거
