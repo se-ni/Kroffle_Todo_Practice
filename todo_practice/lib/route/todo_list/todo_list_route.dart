@@ -22,8 +22,8 @@ class _TodoListRouteState extends State<TodoListRoute> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<TodoListRouteController>(
+      init: TodoListRouteController(),
       builder: (controller) {
-        // List<TaskModel> tasks = controller.tasks; // tasks 리스트 가져오기
         return Scaffold(
           appBar: AppBar(
             title: const Text('Todo APP'),
@@ -34,10 +34,39 @@ class _TodoListRouteState extends State<TodoListRoute> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    // 필터 버튼
+                    TextButton(
+                      onPressed: () {
+                        controller.setFilter(Status.notStarted);
+                        controller.update();
+                      },
+                      child: Text('not started'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        controller.setFilter(Status.progress);
+                        controller.update();
+                      },
+                      child: Text('progress'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        controller.setFilter(Status.end);
+                        controller.update();
+                      },
+                      child: Text('end'),
+                    ),
+                  ],
+                ),
+                Divider(
+                  thickness: 2,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
                     const Text('할일 만들기'),
                     IconButton(
                       onPressed: () {
-                        //controller.onClickAddButton();
                         Get.dialog(
                           const Dialog(
                             backgroundColor: Colors.transparent,
@@ -57,14 +86,15 @@ class _TodoListRouteState extends State<TodoListRoute> {
                   child: Container(
                     width: 400,
                     height: 500,
-                    child: Builder(builder: (context) {
-                      if (controller.tasks.isEmpty) {
-                        return const Text('할일이 없습니다.');
-                      } else {
-                        print('할일 있음');
-                        return const TodoWidget();
-                      }
-                    }),
+                    child: Builder(
+                      builder: (context) {
+                        if (controller.filteredTasks.isEmpty) {
+                          return const Text('할일이 없습니다.');
+                        } else {
+                          return const TodoWidget(); // 필터링된 태스크를 표시
+                        }
+                      },
+                    ),
                   ),
                 ),
               ],

@@ -101,6 +101,7 @@ class _TodoListWidgetState extends State<TodoListWidget> {
                     }
 
                     Navigator.of(context).pop(newTask);
+                    controller.update();
                   },
                   style: ElevatedButton.styleFrom(
                       elevation: 0, // 그림자 제거
