@@ -21,11 +21,14 @@ class _TodoWidgetState extends State<TodoWidget> {
           children: [
             //Text((task.taskStatus).toString()),
             // Status 업데이트를 위한 드롭다운 버튼
+            // ! 드롭다운버튼 심화 학습 필요 !
             DropdownButton<Status>(
               value: task.taskStatus,
               onChanged: (Status? newValue) {
                 setState(() {
                   task.taskStatus = newValue!;
+                  // 상태 바뀜
+                  // print('task.taskStatus' + task.taskStatus.toString());
                 });
               },
               items:
