@@ -18,6 +18,10 @@ class _TodoWidgetState extends State<TodoWidget> {
         final task = Get.find<TodoListRouteController>().tasks[index];
         return Row(
           children: [
+            Text((task.taskStatus).toString()),
+            const SizedBox(
+              width: 2,
+            ),
             Text(task.title),
             task.detail != null ? Text(task.detail!) : const Text(''),
           ],

@@ -9,15 +9,19 @@ class TodoListWidgetController extends GetxController {
 
   // task 생성하기
   TaskModel createTask(String title) {
-    newTask = TaskModel(title: title, createdAt: DateTime.now());
+    newTask = TaskModel(
+        title: title, createdAt: DateTime.now(), taskStatus: Status.notStarted);
     update();
     return newTask;
   }
 
   // detail 있는 task 생성하기
   TaskModel createDetailTask(String title, String detail) {
-    newTask =
-        TaskModel(title: title, detail: detail, createdAt: DateTime.now());
+    newTask = TaskModel(
+        title: title,
+        detail: detail,
+        createdAt: DateTime.now(),
+        taskStatus: Status.notStarted);
     update();
     return newTask;
   }

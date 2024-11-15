@@ -1,3 +1,5 @@
+enum Status { notStarted, progress, end }
+
 class TaskModel {
   // task 고유 id
   String? id;
@@ -8,7 +10,13 @@ class TaskModel {
   // task 생성일
   DateTime createdAt;
 
+  Status taskStatus = Status.notStarted; // 기본값 설정
+
   // 생성자
   TaskModel(
-      {this.id, required this.title, this.detail, required this.createdAt});
+      {this.id,
+      required this.title,
+      this.detail,
+      required this.createdAt,
+      required this.taskStatus});
 }

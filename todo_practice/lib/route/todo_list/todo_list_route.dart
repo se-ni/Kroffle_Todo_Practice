@@ -70,7 +70,7 @@ class _TodoListRouteState extends State<TodoListRoute> {
                       //               ? Text(task.detail!)
                       //               : const Text(''));
                       //     });
-                      return const TodoWidget();
+                      return TodoWidget();
                     }
                   }),
                 ),
