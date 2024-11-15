@@ -27,7 +27,7 @@ class _TodoListWidgetState extends State<TodoListWidget> {
             color: Colors.white,
           ),
           width: 300,
-          height: 330,
+          height: 280,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -40,7 +40,7 @@ class _TodoListWidgetState extends State<TodoListWidget> {
                       flex: 5,
                       child: TextFormField(
                         controller: titleController,
-                        maxLength: 20,
+                        maxLength: 10,
                         decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(4),
@@ -67,8 +67,8 @@ class _TodoListWidgetState extends State<TodoListWidget> {
                       flex: 5,
                       child: TextFormField(
                         controller: detailController,
-                        maxLines: 5,
-                        maxLength: 50,
+                        maxLines: 3,
+                        maxLength: 20,
                         decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(4),

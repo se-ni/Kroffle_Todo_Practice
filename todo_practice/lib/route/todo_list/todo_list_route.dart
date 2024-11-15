@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:todo_practice/model/task_model.dart';
 import 'package:todo_practice/route/todo_list/todo_list_route_controller.dart';
 import 'package:todo_practice/route/todo_list/widgets/todo_list_widget.dart';
 import 'package:todo_practice/route/todo_list/widgets/todo_widget.dart';
@@ -52,30 +53,20 @@ class _TodoListRouteState extends State<TodoListRoute> {
                     ),
                   ],
                 ),
-                Container(
-                  width: 400,
-                  height: 500,
-                  child: Builder(builder: (context) {
-                    if (controller.tasks.isEmpty) {
-                      return const Text('할일이 없습니다.');
-                    } else {
-                      print('할일 있음');
-                      // return ListView.builder(
-                      //     itemCount: controller.tasks.length,
-                      //     itemBuilder: (context, index) {
-                      //       final task = controller.tasks[index];
-                      //       return ListTile(
-                      //           title: Text(task.title),
-                      //           subtitle: task.detail != null
-                      //               ? Text(task.detail!)
-                      //               : const Text(''));
-                      //     });
-                      return TodoWidget();
-                    }
-                  }),
+                Center(
+                  child: Container(
+                    width: 400,
+                    height: 500,
+                    child: Builder(builder: (context) {
+                      if (controller.tasks.isEmpty) {
+                        return const Text('할일이 없습니다.');
+                      } else {
+                        print('할일 있음');
+                        return const TodoWidget();
+                      }
+                    }),
+                  ),
                 ),
-
-                // TODO : controller.tasks 리스트에 할일 추가 정상적으로 되어서 empty가 아닌데 타일이 출력되지 않는 문제 해결해야함
               ],
             ),
           ),
