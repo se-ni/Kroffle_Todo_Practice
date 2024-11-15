@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_practice/route/todo_list/todo_list_route_controller.dart';
 import 'package:todo_practice/route/todo_list/widgets/todo_list_widget.dart';
+import 'package:todo_practice/route/todo_list/widgets/todo_widget.dart';
 
 class TodoListRoute extends StatefulWidget {
   const TodoListRoute({super.key});
@@ -59,16 +60,17 @@ class _TodoListRouteState extends State<TodoListRoute> {
                       return const Text('할일이 없습니다.');
                     } else {
                       print('할일 있음');
-                      return ListView.builder(
-                          itemCount: controller.tasks.length,
-                          itemBuilder: (context, index) {
-                            final task = controller.tasks[index];
-                            return ListTile(
-                                title: Text(task.title),
-                                subtitle: task.detail != null
-                                    ? Text(task.detail!)
-                                    : const Text(''));
-                          });
+                      // return ListView.builder(
+                      //     itemCount: controller.tasks.length,
+                      //     itemBuilder: (context, index) {
+                      //       final task = controller.tasks[index];
+                      //       return ListTile(
+                      //           title: Text(task.title),
+                      //           subtitle: task.detail != null
+                      //               ? Text(task.detail!)
+                      //               : const Text(''));
+                      //     });
+                      return const TodoWidget();
                     }
                   }),
                 ),

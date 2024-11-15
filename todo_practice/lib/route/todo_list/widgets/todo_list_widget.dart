@@ -89,23 +89,16 @@ class _TodoListWidgetState extends State<TodoListWidget> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // TODO : 상태관리
-                    // TODO : 새로운 task 를 만들어서 list 에 추가해야함
+                    // 새로운 task 를 만들어서 list 에 추가하기
 
                     String title = titleController.text;
                     String detail = detailController.text;
+
                     if (detail.isEmpty) {
                       newTask = controller.createTask(title);
                     } else {
                       newTask = controller.createDetailTask(title, detail);
                     }
-
-                    //controller.addTasktoList(newTask);
-
-                    // 저장됨
-                    //print(controller.todoListRouteController.tasks[0].title);
-
-                    // Get.back(); 적용 안됨
 
                     Navigator.of(context).pop(newTask);
                   },
