@@ -13,13 +13,16 @@ class _TodoWidgetState extends State<TodoWidget> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: Get.find<TodoListRouteController>().tasks.length,
-        itemBuilder: (context, index) {
-          final task = Get.find<TodoListRouteController>().tasks[index];
-          return ListTile(
-              title: Text(task.title),
-              subtitle:
-                  task.detail != null ? Text(task.detail!) : const Text(''));
-        });
+      itemCount: Get.find<TodoListRouteController>().tasks.length,
+      itemBuilder: (context, index) {
+        final task = Get.find<TodoListRouteController>().tasks[index];
+        return Row(
+          children: [
+            Text(task.title),
+            task.detail != null ? Text(task.detail!) : const Text(''),
+          ],
+        );
+      },
+    );
   }
 }
